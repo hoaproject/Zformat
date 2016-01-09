@@ -8,7 +8,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2015, Hoa community. All rights reserved.
+ * Copyright © 2007-2016, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -41,7 +41,7 @@ namespace Hoa\Zformat;
  *
  * Provide a class parameters support.
  *
- * @copyright  Copyright © 2007-2015 Hoa community
+ * @copyright  Copyright © 2007-2016 Hoa community
  * @license    New BSD License
  */
 class Parameter
@@ -94,8 +94,8 @@ class Parameter
      */
     public function __construct(
         $owner,
-        Array $keywords   = [],
-        Array $parameters = []
+        array $keywords   = [],
+        array $parameters = []
     ) {
         if (is_object($owner)) {
             if (!($owner instanceof Parameterizable)) {
@@ -179,7 +179,7 @@ class Parameter
      * @return  void
      * @throws  \Hoa\Zformat\Exception
      */
-    private function setDefault(Array $parameters)
+    private function setDefault(array $parameters)
     {
         $this->_parameters = $parameters;
 
@@ -192,7 +192,7 @@ class Parameter
      * @param   array   $parameter    Parameters.
      * @return  void
      */
-    public function setParameters(Array $parameters)
+    public function setParameters(array $parameters)
     {
         $this->resetCache();
 
