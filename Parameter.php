@@ -36,8 +36,6 @@
 
 namespace Hoa\Zformat;
 
-use Hoa\Consistency;
-
 /**
  * Class \Hoa\Zformat\Parameter.
  *
@@ -680,8 +678,3 @@ class Parameter
         return;
     }
 }
-
-/**
- * Flex entity.
- */
-Consistency::flexEntity('Hoa\Zformat\Zformat');
