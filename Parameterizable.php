@@ -36,8 +36,6 @@
 
 namespace Hoa\Zformat;
 
-use Hoa\Consistency;
-
 /**
  * Interface \Hoa\Zformat\Parameterizable.
  *
