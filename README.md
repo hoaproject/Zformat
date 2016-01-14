@@ -17,7 +17,7 @@ dependencies, you need to require
 ```json
 {
     "require": {
-        "hoa/zformat": "~0.0"
+        "hoa/zformat": "~1.0"
     }
 }
 ```
