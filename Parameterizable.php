@@ -36,7 +36,6 @@
 
 namespace Hoa\Zformat;
 
-
 /**
  * Interface \Hoa\Zformat\Parameterizable.
  *

@@ -90,7 +90,7 @@ class Parameter
      * @param   array  $keywords      Keywords.
      * @param   array  $parameters    Parameters.
      * @return  void
-     * @throws  \Hoa\Zformat\Parameter
+     * @throws  \Hoa\Zformat\Exception
      */
     public function __construct(
         $owner,
@@ -189,7 +189,7 @@ class Parameter
     /**
      * Set parameters.
      *
-     * @param   array   $parameter    Parameters.
+     * @param   array   $parameters    Parameters.
      * @return  void
      */
     public function setParameters(array $parameters)
@@ -265,17 +265,17 @@ class Parameter
     }
 
     /**
-     * Check a branche exists.
+     * Check a branch exists.
      *
-     * @param   string  $branche    Branche.
+     * @param   string  $branch    Branch.
      * @return  bool
      */
-    public function brancheExists($branche)
+    public function branchExists($branch)
     {
-        $qBranche = preg_quote($branche);
+        $qBranch = preg_quote($branch);
 
         foreach ($this->getParameters() as $key => $value) {
-            if (0 !== preg_match('#^' . $qBranche . '(.*)?#', $key)) {
+            if (0 !== preg_match('#^' . $qBranch . '(.*)?#', $key)) {
                 return true;
             }
         }
@@ -284,26 +284,26 @@ class Parameter
     }
 
     /**
-     * Unlinearize a branche to an array.
+     * Unlinearize a branch to an array.
      *
-     * @param   string  $branche    Branche.
+     * @param   string  $branch    Branch.
      * @return  array
      */
-    public function unlinearizeBranche($branche)
+    public function unlinearizeBranch($branch)
     {
         $parameters = $this->getParameters();
         $out        = [];
-        $lBranche   = strlen($branche);
+        $lBranch   = strlen($branch);
 
         foreach ($parameters as $key => $value) {
-            if ($branche !== substr($key, 0, $lBranche)) {
+            if ($branch !== substr($key, 0, $lBranch)) {
                 continue;
             }
 
             $handle  = [];
             $explode = preg_split(
                 '#((?<!\\\)\.)#',
-                substr($key, $lBranche + 1),
+                substr($key, $lBranch + 1),
                 -1,
                 PREG_SPLIT_NO_EMPTY
             );
@@ -446,7 +446,7 @@ class Parameter
      *   • O: difference to Greenwich time (GMT) in hours;
      *   • T: timezone abbreviation;
      *   • U: seconds since the Unix Epoch (a timestamp).
-     * They are very usefull for dynamic cache paths for example.
+     * They are very useful for dynamic cache paths for example.
      *
      * Examples:
      *   Let keywords $k and parameters $p:
