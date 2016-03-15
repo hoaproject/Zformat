@@ -1,3 +1,7 @@
+# 1.16.03.15
+
+  * Parameter: Fix API documentation, namings… (Metalaka, 2016-01-16T08:02:35+01:00)
+
 # 1.16.01.14
 
   * Quality: Drop PHP5.4. (Ivan Enderlin, 2016-01-11T09:15:27+01:00)
