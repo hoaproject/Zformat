@@ -1,3 +1,9 @@
+# 1.17.01.10
+
+  * Quality: Happy new year! (Alexis von Glasow, 2017-01-09T23:56:56+01:00)
+  * Documentation: New `README.md` file. (Ivan Enderlin, 2016-10-22T17:36:15+02:00)
+  * Documentation: Update `support` properties. (Ivan Enderlin, 2016-10-11T11:41:21+02:00)
+
 # 1.16.03.15
 
   * Parameter: Fix API documentation, namings… (Metalaka, 2016-01-16T08:02:35+01:00)
