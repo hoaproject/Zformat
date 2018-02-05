@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hoa
  *
@@ -8,7 +10,7 @@
  *
  * New BSD License
  *
- * Copyright © 2007-2017, Hoa community. All rights reserved.
+ * Copyright © 2007-2018, Hoa community. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -40,44 +42,31 @@ namespace Hoa\Zformat;
  * Class \Hoa\Zformat\Parameter.
  *
  * Provide a class parameters support.
- *
- * @copyright  Copyright © 2007-2017 Hoa community
- * @license    New BSD License
  */
 class Parameter
 {
     /**
      * Owner.
-     *
-     * @var string
      */
     protected $_owner            = null;
 
     /**
      * Parameters.
-     *
-     * @var array
      */
     protected $_parameters       = [];
 
     /**
      * Keywords.
-     *
-     * @var array
      */
     protected $_keywords         = [];
 
     /**
      * Constants values for zFormat.
-     *
-     * @var array
      */
     protected static $_constants = null;
 
     /**
      * Cache for zFormat.
-     *
-     * @var array
      */
     protected $_cache            = [];
 
@@ -85,11 +74,6 @@ class Parameter
 
     /**
      * Construct a new set of parameters.
-     *
-     * @param   mixed  $owner         Owner name or instance.
-     * @param   array  $keywords      Keywords.
-     * @param   array  $parameters    Parameters.
-     * @throws  \Hoa\Zformat\Exception
      */
     public function __construct(
         $owner,
@@ -129,10 +113,8 @@ class Parameter
 
     /**
      * Initialize constants.
-     *
-     * @return  void
      */
-    public static function initializeConstants()
+    public static function initializeConstants(): void
     {
         $c                = explode('…', date('d…j…N…w…z…W…m…n…Y…y…g…G…h…H…i…s…u…O…T…U'));
         self::$_constants = [
@@ -163,22 +145,16 @@ class Parameter
 
     /**
      * Get constants.
-     *
-     * @return  array
      */
-    public static function getConstants()
+    public static function getConstants(): array
     {
         return self::$_constants;
     }
 
     /**
      * Set default parameters to a class.
-     *
-     * @param   array  $parameters    Parameters to set.
-     * @return  void
-     * @throws  \Hoa\Zformat\Exception
      */
-    private function setDefault(array $parameters)
+    private function setDefault(array $parameters): void
     {
         $this->_parameters = $parameters;
 
@@ -187,11 +163,8 @@ class Parameter
 
     /**
      * Set parameters.
-     *
-     * @param   array   $parameters    Parameters.
-     * @return  void
      */
-    public function setParameters(array $parameters)
+    public function setParameters(array $parameters): void
     {
         $this->resetCache();
 
@@ -204,22 +177,16 @@ class Parameter
 
     /**
      * Get parameters.
-     *
-     * @return  array
      */
-    public function getParameters()
+    public function getParameters(): array
     {
         return $this->_parameters;
     }
 
     /**
      * Set a parameter.
-     *
-     * @param   string  $key      Key.
-     * @param   mixed   $value    Value.
-     * @return  mixed
      */
-    public function setParameter($key, $value)
+    public function setParameter(string $key, $value)
     {
         $this->resetCache();
         $old = null;
@@ -235,11 +202,8 @@ class Parameter
 
     /**
      * Get a parameter.
-     *
-     * @param   string  $parameter    Parameter.
-     * @return  mixed
      */
-    public function getParameter($parameter)
+    public function getParameter(string $parameter)
     {
         if (array_key_exists($parameter, $this->_parameters)) {
             return $this->_parameters[$parameter];
@@ -250,11 +214,8 @@ class Parameter
 
     /**
      * Get a formatted parameter (i.e. zFormatted).
-     *
-     * @param   string  $parameter    Parameter.
-     * @return  mixed
      */
-    public function getFormattedParameter($parameter)
+    public function getFormattedParameter(string $parameter)
     {
         if (null === $value = $this->getParameter($parameter)) {
             return null;
@@ -265,11 +226,8 @@ class Parameter
 
     /**
      * Check a branch exists.
-     *
-     * @param   string  $branch    Branch.
-     * @return  bool
      */
-    public function branchExists($branch)
+    public function branchExists(string $branch): bool
     {
         $qBranch = preg_quote($branch);
 
@@ -284,11 +242,8 @@ class Parameter
 
     /**
      * Unlinearize a branch to an array.
-     *
-     * @param   string  $branch    Branch.
-     * @return  array
      */
-    public function unlinearizeBranch($branch)
+    public function unlinearizeBranch(string $branch): array
     {
         $parameters = $this->getParameters();
         $out        = [];
@@ -329,12 +284,8 @@ class Parameter
 
     /**
      * Set keywords.
-     *
-     * @param   array   $keywords    Keywords.
-     * @return  void
-     * @throws  \Hoa\Zformat\Exception
      */
-    public function setKeywords($keywords)
+    public function setKeywords(array $keywords): void
     {
         $this->resetCache();
 
@@ -347,22 +298,16 @@ class Parameter
 
     /**
      * Get keywords.
-     *
-     * @return  array
      */
-    public function getKeywords()
+    public function getKeywords(): array
     {
         return $this->_keywords;
     }
 
     /**
      * Set a keyword.
-     *
-     * @param   string  $key      Key.
-     * @param   mixed   $value    Value.
-     * @return  mixed
      */
-    public function setKeyword($key, $value)
+    public function setKeyword(string $key, $value)
     {
         $this->resetCache();
         $old = null;
@@ -378,11 +323,8 @@ class Parameter
 
     /**
      * Get a keyword.
-     *
-     * @param   string  $keyword    Keyword.
-     * @return  mixed
      */
-    public function getKeyword($keyword)
+    public function getKeyword(string $keyword)
     {
         if (true === array_key_exists($keyword, $this->_keywords)) {
             return $this->_keywords[$keyword];
@@ -478,12 +420,8 @@ class Parameter
      *                    and add the extension of power;
      *     • recursion:   'oofarBaz', get 'arbar' first, and then, replace the
      *                    suffix 'ar' by 'az'.
-     *
-     * @param   string  $value    Parameter value.
-     * @return  string
-     * @throws  \Hoa\Zformat\Exception
      */
-    public function zFormat($value)
+    public function zFormat(string $value): string
     {
         if (!is_string($value)) {
             return $value;
@@ -666,10 +604,8 @@ class Parameter
 
     /**
      * Reset zFormat cache.
-     *
-     * @return  void
      */
-    private function resetCache()
+    private function resetCache(): void
     {
         unset($this->_cache);
         $this->_cache = [];
