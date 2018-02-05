@@ -29,7 +29,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hoa\\Zformat\\": "."
+            "Hoa\\Zformat\\": "Source"
         }
     },
     "extra": {
