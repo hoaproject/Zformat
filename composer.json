@@ -25,6 +25,7 @@
     "require": {
         "hoa/consistency": "~1.0",
         "hoa/exception"  : "~1.0"
+        "php"            : ">=7.1",
     },
     "autoload": {
         "psr-4": {
